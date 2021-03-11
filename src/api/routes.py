@@ -19,8 +19,8 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 # funcion de correo
 def mail(asunto,mensaje,correo):
     email = 'correodepruba70@gmail.com'
-    message = mensaje.encode('utf-8')
-    subject = asunto.encode('utf-8')
+    message = mensaje
+    subject = asunto
     message = 'Subject:{}\n\n{}'.format(subject, message)  # ojo, el subject debe ir escrito así, sino no lo identifica
     server = smtplib.SMTP('smtp.gmail.com',587) 
                            # Definir objeto smtp...primero se define el servidor de correo.. luego el puerto a usar
@@ -29,7 +29,7 @@ def mail(asunto,mensaje,correo):
     server.login('correodepruba70@gmail.com', '.123456789.a') # server.login(correo-contrasena)
     #NO SE MUESTRAN EL CORREO O LA CONTRASENA POR SEGURIDAD
     server.sendmail(email,correo,message)  # Quien envia el correo,quien lo recibe,mensaje
-    server.quit() 
+    server.quit()
 
 
 
@@ -231,7 +231,7 @@ def register():
         
         db.session.add(user)
         db.session.commit()
-        return jsonify({"status":"failed","msg":"Succesfully registered"}), 200
+        return jsonify({"status":"success","msg":"Succesfully registered"}), 200
     
     
 @api.route('/login', methods=['POST'])   
@@ -249,7 +249,7 @@ def login():
         if not user:
             return jsonify({"msg":"Email is incorrect","status":"failed"}), 401
         if not check_password_hash(user.password, password):
-            return jsonify({"msg":"Password incorrct","status":"failed"}), 401
+            return jsonify({"msg":"Password incorret","status":"failed"}), 401
         
         #creacion token
         access_token = create_access_token(identity=user.email) 
@@ -307,13 +307,42 @@ def del_medicamentos(id):
     db.session.commit()
     
     return jsonify("delete successful"), 200
-#rutas del medicamentos ya  se provaron en postman   
+#rutas del medicamentos ya  se provaron en postman  
 
 
 
 
-
-
+@api.route("/farmainfo/<int:id>", methods=['POST'])
+def farma_info(id):
+    if request.method == 'POST':
+        body = request.get_json()
+        consulta= body.get("data")
+        userinfo = User.query.get(id)
+        if not userinfo:
+            return jsonify({"msg":"ID doesnt exists"}), 400
+        user = userinfo
+        email = user.email
+        name = user.name
+        cedula = user.Cedula
+        edad = user.Edad
+        Fecha_Nacimiento = user.Fecha_Nacimiento
+        Telefono_Usuario = user.Telefono_Usuario
+        Nombre_Cuidador = user.Nombre_Cuidador
+        Telefono_Cuidador = user.Telefono_Cuidador
+        Peso_Usuario = user.Peso_Usuario
+        Altura_Usuario = user.Altura_Usuario
+        Profesion = user.Profesion
+        Medicamentos_Actuales = user.Medicamentos_Actuales
+        Enfermedades = user.Enfermedades
+        Alergias_Medicamentosas_Alimenticias = user.Alergias_Medicamentosas_Alimenticias
+        header = "Informacion de Usuario"
+        container = "Estos son lo datos del usuario \n\n email: {} \n\n name: {} \n\n cedula:{} \n\n edad:{} \n\n  Fecha Nacimiento :{} \n\n Telefono de Usuario:{} \n\n Nombre de Cuidador:{} \n\n Telefono de Cuidador:{} \n\n Peso de Usuario:{} \n\n Altura de Usuario:{} \n\n Profesion:{} \n\n Medicamentos Actuales:{} \n\n Enfermedades:{} \n\n Alergias Medicamentos:{} \n\n Consulta medica:\n {}".format(email, name, cedula, edad, Fecha_Nacimiento, Telefono_Usuario, Nombre_Cuidador,Telefono_Cuidador,Peso_Usuario,Altura_Usuario,Profesion, Medicamentos_Actuales,Enfermedades, Alergias_Medicamentosas_Alimenticias, consulta)
+        correo = "daviducr.2593@gmail.com"#correo q le llega la info
+        mail(header,container,correo)
+        print(mail)
+        db.session.add(user)
+        db.session.commit()
+        return jsonify("prueba de restore password"), 200
 
 
 
