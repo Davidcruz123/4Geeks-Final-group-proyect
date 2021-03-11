@@ -7,15 +7,19 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
-from api.models import db
+from api.models import db,User
 from api.routes import api
 from api.admin import setup_admin
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash, check_password_hash
 #from models import Person
 
 ENV = os.getenv("FLASK_ENV")
 static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+jwt = JWTManager(app) 
 
 # database condiguration
 if os.getenv("DATABASE_URL") is not None:
@@ -56,6 +60,36 @@ def serve_any_other_file(path):
     response = send_from_directory(static_file_dir, path)
     response.cache_control.max_age = 0 # avoid cache memory
     return response
+
+# @app.route('/login', methods=['POST'])   
+# def login():
+#     if request.method == 'POST':
+#         email = request.json.get("email", None)
+#         password = request.json.get("password",None)
+        
+#         if not email:
+#             return jsonify({"msg":"Email is required"}), 400
+#         if not password:
+#             return jsonify({"msg":"Password is required"}), 400
+        
+#         user = User.query.filter_by(email=email).first()
+#         if not user:
+#             return jsonify({"msg":"Email/Password are incorrct"}), 401
+#         if not check_password_hash(user.password, password):
+#             return jsonify({"msg":"Email/Password are incorrct"}), 401
+        
+#         #creacion token
+#         access_token = create_access_token(identity=user.email) 
+        
+#         data = {
+#             "user":user.serialize(),
+#             "token":access_token,
+#         }
+        
+#         return jsonify(data,"login correcto"),200
+
+
+
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == '__main__':
