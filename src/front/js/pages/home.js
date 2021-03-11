@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "/workspace/4Geeks-Final-group-proyect/src/front/img/hola.jpg";
+import rigoImageUrl from "../../img/portadareal.jpeg";
 import "../../styles/home.scss";
 
 export const Home = () => {
@@ -8,17 +8,21 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Llame YAAA!</h1>
+			<h1 />
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
-			<div className="alert alert-info">{store.message || "HOLAAA TEST..."}</div>
-			<p>
-				This boilerplate comes with lots of documentation:{" "}
-				<a href="https://github.com/4GeeksAcademy/react-flask-hello/tree/95e0540bd1422249c3004f149825285118594325/docs">
-					Read documentation
-				</a>
-			</p>
+			<div className="ml-auto">
+				<button className="btn btn-primary">Buscar Medicamentos</button>
+			</div>
+			<div className="ml-auto">
+				<button className="btn btn-primary">Consulta Farmacéutica</button>
+			</div>
+			<div className="alert alert-info">
+				{store.message ||
+					"Consulte con su Médico o Farmacéutico de confianza si presenta algún efecto secundario con sus medicametos o tiene alguna duda sobre ellos"}
+			</div>
+			<p>En caso de emergencia llamar al 911 </p>
 		</div>
 	);
 };

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/user_view.scss";
+import foto from "../../img/Portada02.png";
 
 export const User = () => {
 	const { store, actions } = useContext(Context);
@@ -23,10 +24,7 @@ export const User = () => {
 		<div className="container">
 			<div className="jumbotron">
 				<h1 className="display-4 text-white">Nombre de Usuario</h1>
-				<img
-					src="https://browser-harlequin-dog-v413dqz1.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/Portada%2002.png"
-					width="40%"
-				/>
+				<img src={foto} width="40%" />
 				<br />
 				<br />
 				<br />

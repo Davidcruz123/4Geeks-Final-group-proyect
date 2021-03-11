@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/register.scss";
+import { Link } from "react-router-dom";
 
 export const Register = () => {
 	const { store, actions } = useContext(Context);
@@ -53,8 +54,10 @@ export const Register = () => {
 
 				<div className="container signin">
 					<p>
-						Cuenta con cuenta de inicio?{" "}
-						<a href="https://3000-harlequin-dog-v413dqz1.ws-us03.gitpod.io/login">Sign in</a>.
+						Cuenta con cuenta de inicio?
+						<Link to="/login">
+							<a href="#">Sign in</a>.
+						</Link>
 					</p>
 				</div>
 			</form>

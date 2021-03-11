@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
+// import "../../img/GIF-queremos.gif";
 
 export const Login = () => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +13,7 @@ export const Login = () => {
 					<br />
 					<br />
 					<img
-						src="https://browser-harlequin-dog-v413dqz1.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/GIF%20-%20Queremos%20ayudarte%20a%20la%20distancia%20%281%29.gif"
+						src="https://browser-red-aardvark-0k6zc0as.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/GIF-queremos.gif"
 						alt="Avatar"
 						className="rounded mx-auto d-block"
 						width="40%"

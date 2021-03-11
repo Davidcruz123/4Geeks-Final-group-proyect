@@ -9,7 +9,7 @@ export const Navbar = () => {
 			<div className="container-fluid">
 				<div className="col-3">
 					<Link to="/home">
-						<img src="https://browser-harlequin-dog-v413dqz1.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/image%20Pharma.JPG" />
+						<img src="https://browser-red-aardvark-0k6zc0as.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/image%20Pharma.JPG" />
 					</Link>
 				</div>
 				<form className="bd-search d-flex align-items-center" action="/home">
@@ -23,12 +23,19 @@ export const Navbar = () => {
 							<i className="fas fa-bars fa-2x" /> Menu
 						</button>
 						<div className="dropdown-content">
-							<a href="https://3000-harlequin-dog-v413dqz1.ws-us03.gitpod.io/user_view">Perfil Usuario</a>
+							<Link to="/user_view">
+								<a href="#">Perfil Usuario</a>
+							</Link>
+
 							<a href="https://jonnathanhumphreys.wixsite.com/4geeks/consulta-farmac%C3%A9utica">
 								Consulta Farmaceutica
 							</a>
-							<a href="https://jonnathanhumphreys.wixsite.com/4geeks/covid-19">Covid 19</a>
-							<a href="https://jonnathanhumphreys.wixsite.com/4geeks/medicamentos">Medicamentos</a>
+
+							{/* <Link to="/">
+								<a href="https://jonnathanhumphreys.wixsite.com/4geeks/covid-19">Covid 19</a>
+							</Link> */}
+
+							{/* <a href="https://jonnathanhumphreys.wixsite.com/4geeks/medicamentos">Medicamentos</a> */}
 						</div>
 					</div>
 				</div>
