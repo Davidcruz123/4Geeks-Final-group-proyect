@@ -5,7 +5,11 @@ import "../../styles/navbar.scss";
 import imagen from "../../img/pharmaimg.jpg";
 
 export const Navbar = () => {
-	const [resultados_busqueda, setResultados_busqueda] = useState(["El medicamento no fue encontrado"]);
+	const [resultados_busqueda, setResultados_busqueda] = useState([
+		{
+			principio_activo: "El medicamento no se encontró"
+		}
+	]);
 	function myFunction() {
 		getinformation();
 		document.getElementById("myDropdown").classList.toggle("show");
@@ -42,11 +46,13 @@ export const Navbar = () => {
 					// console.log("en teoria ya se hizo el redirect");
 				} else {
 					console.log("algun error");
-					setResultados_busqueda(["El medicamento no fue encontrado"]);
+					setResultados_busqueda([{ principio_activo: "El medicamento no se encontró" }]);
 				}
 			})
 			.catch(error => {
 				console.log("Error", error);
+				setResultados_busqueda([{ principio_activo: "El medicamento no se encontró" }]);
+				console.log(resultados_busqueda);
 			});
 	};
 
@@ -88,9 +94,13 @@ export const Navbar = () => {
 					<div className="dropdown2">
 						<i className="fas fa-search dropbtn2 " onClick={() => myFunction()} />
 						<div id="myDropdown" className="dropdown-content2">
-							<a href="#home">Home</a>
-
-							<a href="#contact">Contact</a>
+							{resultados_busqueda.map((elemento, index) => {
+								return (
+									<a key={index} href="#home">
+										{elemento.principio_activo}
+									</a>
+								);
+							})}
 						</div>
 					</div>
 				</div>
