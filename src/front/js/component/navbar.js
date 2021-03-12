@@ -1,14 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/navbar.scss";
 import imagen from "../../img/pharmaimg.jpg";
 
 export const Navbar = () => {
+	const [resultados_busqueda, setResultados_busqueda] = useState(["El medicamento no fue encontrado"]);
 	function myFunction() {
+		getinformation();
 		document.getElementById("myDropdown").classList.toggle("show");
 		console.log("click");
 	}
+
+	const getinformation = () => {
+		let medicamento_url = document.getElementById("searchmedicine").value;
+		let url = "https://3001-purple-dingo-0a9foose.ws-us03.gitpod.io/api/medicines/" + medicamento_url;
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				console.log("obtener medicamentos", data);
+				if (data.status == "success") {
+					console.log("Success");
+					if (data.msg == "were you trying to say:") {
+						console.log("voy bien", data.data);
+						setResultados_busqueda(data.data); //es una lista de objetos.. lo que ocupo es la marca comercial
+					}
+					//                     //     console.log("voy bien")were you trying to say"""==data.msg
+					// ()){}}					// let session_info = {
+					// 	token: data.token,
+					// 	id: data.user.id
+					// };
+
+					// localStorage.setItem("user_information", JSON.stringify(session_info)); //esta es una variable que se guarda a nivel de browser
+
+					// console.log(localStorage);
+					// fetch2(data.user.id, data.user);
+
+					// console.log("STORE", store);
+
+					// setRedirect(true); // para que redirect funcione se debe renderizar la pagina de nuevo, para eso usamos este hook
+					// console.log("en teoria ya se hizo el redirect");
+				} else {
+					console.log("algun error");
+					setResultados_busqueda(["El medicamento no fue encontrado"]);
+				}
+			})
+			.catch(error => {
+				console.log("Error", error);
+			});
+	};
 
 	window.onclick = function(event) {
 		if (!event.target.matches(".dropbtn2")) {
@@ -38,41 +78,21 @@ export const Navbar = () => {
 				</form> */}
 
 				<div className="row bg-secondary d-flex">
-					<input className="form-control mb-40 mr-sm-2 col-10" type="text" placeholder="Buscar Medicamento" />
+					<input
+						className="form-control mb-40 mr-sm-2 col-10"
+						type="text"
+						placeholder="Buscar Medicamento"
+						id="searchmedicine"
+					/>
 
 					<div className="dropdown2">
 						<i className="fas fa-search dropbtn2 " onClick={() => myFunction()} />
 						<div id="myDropdown" className="dropdown-content2">
 							<a href="#home">Home</a>
-							<a href="#about">About</a>
+
 							<a href="#contact">Contact</a>
 						</div>
 					</div>
-
-					{/* <div className="col-2">
-						<div className="dropdown">
-							<i
-								className="fas fa-search fa-2x dropdown-toggle"
-								type="button"
-								id="dropdownMenu2"
-								data-toggle="dropdown"
-								aria-haspopup="true"
-								aria-expanded="false"
-							/>
-
-							<div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button className="dropdown-item" type="button">
-									Action
-								</button>
-								<button className="dropdown-item" type="button">
-									Another action
-								</button>
-								<button classNAme="dropdown-item" type="button">
-									Something else here
-								</button>
-							</div>
-						</div>
-					</div> */}
 				</div>
 
 				<div className="col-1">
