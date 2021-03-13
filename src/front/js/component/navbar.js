@@ -10,6 +10,9 @@ export const Navbar = () => {
 			principio_activo: "El medicamento no se encontró"
 		}
 	]);
+
+	const [link, setLink] = useState("/");
+
 	function myFunction() {
 		getinformation();
 		document.getElementById("myDropdown").classList.toggle("show");
@@ -28,6 +31,7 @@ export const Navbar = () => {
 					if (data.msg == "were you trying to say:") {
 						console.log("voy bien", data.data);
 						setResultados_busqueda(data.data); //es una lista de objetos.. lo que ocupo es la marca comercial
+						setLink("/login");
 					}
 					//                     //     console.log("voy bien")were you trying to say"""==data.msg
 					// ()){}}					// let session_info = {
@@ -47,12 +51,14 @@ export const Navbar = () => {
 				} else {
 					console.log("algun error");
 					setResultados_busqueda([{ principio_activo: "El medicamento no se encontró" }]);
+					setLink("/");
 				}
 			})
 			.catch(error => {
 				console.log("Error", error);
 				setResultados_busqueda([{ principio_activo: "El medicamento no se encontró" }]);
 				console.log(resultados_busqueda);
+				setLink("/");
 			});
 	};
 
@@ -96,9 +102,11 @@ export const Navbar = () => {
 						<div id="myDropdown" className="dropdown-content2">
 							{resultados_busqueda.map((elemento, index) => {
 								return (
-									<a key={index} href="#home">
-										{elemento.principio_activo}
-									</a>
+									<Link to={link} key={index}>
+										<a key={index} href="#home">
+											{elemento.principio_activo}
+										</a>
+									</Link>
 								);
 							})}
 						</div>
