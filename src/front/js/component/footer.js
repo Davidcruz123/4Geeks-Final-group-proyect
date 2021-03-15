@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import "../../img/pharma-redes.jpeg";
+import "../../img/redessociales.png";
 import "../../styles/footer.scss";
-
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
 		<div>
-			<a href="https://www.facebook.com/El-Farmac%C3%A9utico-Online-116143110180817">
-				<img src="/../../pharma-redes.jpeg" />
+			<a href="https://browser-harlequin-dog-v413dqz1.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/redessociales.png">
+				<img src="/../../redessociales.png" />
 			</a>
 		</div>
 		<div className="row footerIconos">

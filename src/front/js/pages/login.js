@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
 import { Redirect } from "react-router-dom";
-
+import { gif } from "../../img/GIFqueremos.gif";
 export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [redirect, setRedirect] = useState(false);
@@ -62,7 +62,7 @@ export const Login = () => {
 					<br />
 					<br />
 					<img
-						src="https://browser-harlequin-dog-v413dqz1.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/GIF%20-%20Queremos%20ayudarte%20a%20la%20distancia%20%281%29.gif"
+						src="https://browser-blush-spider-pop272c7.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/GIFqueremos.gif"
 						alt="Avatar"
 						className="rounded mx-auto d-block"
 						width="40%"
@@ -94,7 +94,9 @@ export const Login = () => {
 							/>
 						</div>
 					</div>
-
+					<p className="text-danger">
+						La contrasena que ha introducido es incorrecta. Has olvidado la contrasena?
+					</p>
 					<input type="submit" className="btn btn-primary" value="Acceso" />
 					{/* {redirect ? <Redirect to="/user_view" /> : ""} */}
 					<label>

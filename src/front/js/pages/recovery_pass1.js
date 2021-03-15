@@ -12,6 +12,7 @@ export const Recovery1 = () => {
 				src="https://spainbox.com/mailboxes/wp-content/uploads/2016/10/health-pharmacy-warehouse-spain.gif"
 				width="40%"
 				className="mx-auto d-block"
+				style={{ borderRadius: "0%" }}
 			/>
 
 			<h1>Confirmacion cambio contraseña</h1>

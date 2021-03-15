@@ -10,6 +10,9 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { User } from "./pages/user_view";
 import { Footer } from "./component/footer";
+import { Medicamentos } from "./pages/consulta_farmacia.js";
+import { Descripcion } from "./pages/medicine_description.js";
+import { Consulta } from "./pages/medicine_consultation";
 
 //create your first component
 const Layout = () => {
@@ -43,6 +46,17 @@ const Layout = () => {
 						<Route exact path="/recovery_pass1">
 							<Recovery1 />
 						</Route>
+						<Route exact path="/parmacy_consultation">
+							<Medicamentos />
+						</Route>
+						<Route exact path="/medicine_description">
+							<Descripcion />
+						</Route>
+
+						<Route exact path="/medicine_consultation">
+							<Consulta />
+						</Route>
+
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

@@ -10,7 +10,7 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			<h1 />
 			<p>
-				<img src={rigoImageUrl} />
+				<img src={rigoImageUrl} style={{ borderRadius: "0%" }} />
 			</p>
 			<div className="ml-auto">
 				<button className="btn btn-primary">Buscar Medicamentos</button>

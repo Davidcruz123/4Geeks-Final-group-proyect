@@ -8,7 +8,8 @@ export const Recovery = () => {
 	return (
 		<div className="container">
 			<img
-				src="https://lh3.googleusercontent.com/proxy/OYDJt5V_zdCTrzdxHSa7KUKMmse2ozuTsmcJq1cPceK5W-T2Hjf5EpgNCSE8c0wMjLFrABnZ1krtVbVWHMQkkyEf3cujjbt_N94T2GVjsze5VZK-kAaT2zcVj6k6RC5GYy3m4NDNZORYS_wKjOA"
+				src="https://lh3.googleusercontent.com/proxy/f9gOturveSV2An6uG4gt__JLfW8-nqj1uTgBdRcPW4Z25KTEGb5vizpTtuzrMBlVpK7qefoncWdG4JATAcSZg8y3JqJYmbSDKRUoIzkgjTaYjppZXnezKSs8F4kV5WtC8E1uvksoMdWbxtEo59Y
+"
 				width="40%"
 				className="mx-auto d-block"
 			/>
