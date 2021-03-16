@@ -78,7 +78,7 @@ class Medicamentos(db.Model):
             "respuesta_3":self.respuesta_3,
             "respuesta_4":self.respuesta_4,
             "respuesta_5":self.respuesta_5,
-            "respuesta_6 ":self.respuesta_6,
+            "respuesta_6":self.respuesta_6,
             "respuesta_7":self.respuesta_7
             # do not serialize the password, its a security breach
         }

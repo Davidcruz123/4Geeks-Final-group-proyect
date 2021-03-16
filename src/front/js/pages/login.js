@@ -19,7 +19,7 @@ export const Login = () => {
 			password: pass
 		};
 
-		fetch("https://3001-copper-lemur-lq8jolvu.ws-us03.gitpod.io/api/login", {
+		fetch("https://3001-orange-gayal-yfume403.ws-us03.gitpod.io/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
