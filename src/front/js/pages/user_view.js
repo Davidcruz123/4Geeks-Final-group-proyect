@@ -1,29 +1,119 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/user_view.scss";
 import foto from "../../img/Portada02.png";
 
 export const User = () => {
+	const info = JSON.parse(localStorage.getItem("user_information")).userinf;
+	const local = JSON.parse(localStorage.getItem("user_information"));
 	const { store, actions } = useContext(Context);
-	const [nombre, setNombre] = useState("Carlos Lastres");
-	const [cedula, setCedula] = useState("205790475");
-	const [edad, setEdad] = useState("25");
-	const [dob, setdob] = useState("01/18/1990");
-	const [telefono, setTelefono] = useState("(506) 7010-9320");
-	const [cuidador, setcuidador] = useState("David PITT");
-	const [numcuidador, setphonecuidador] = useState("(506) 7010-8000");
-	const [peso, setpeso] = useState("85 Kg");
-	const [estatura, setestatura] = useState("1.80 Mts");
-	const [profesion, setprofesion] = useState("Criminologo");
-	const [enfermedades, setenfermedades] = useState("Presion Alta");
-	const [medicamentos, setmedicamentos] = useState("Clonazepan");
-	const [alergias, setalergias] = useState("Diazepan");
+	//console.log("info", info);
+	console.log("buscar el id", info);
+	console.log("local", local);
+	//console.log("fechanull", info.Fecha_Nacimiento);
+	//console.log("fecha de Na", valores[5]);
+	//console.log("peso", info["Telefono Usuario"]);
+
+	// console.log("prueba usuario", usuario);
+	// console.log("usuario", usuario);
+	//let usuario = id.String();
+
+	//console.log("error", fechaNa);
+	let valores = Object.values(info);
+	console.log(valores);
+
+	const [nombre, setNombre] = useState(info.name);
+	const [cedula, setCedula] = useState(info.Cedula);
+	const [edad, setEdad] = useState(info.Edad);
+	const [dob, setdob] = useState(valores[5]);
+	const [telefono, setTelefono] = useState(valores[11]);
+	const [cuidador, setCuidador] = useState(valores[7]);
+	const [numcuidador, setNumcuidador] = useState(valores[10]);
+	const [peso, setpeso] = useState(valores[8]);
+	const [estatura, setestatura] = useState(valores[1]);
+	const [profesion, setprofesion] = useState(info.Profesion);
+	const [enfermedades, setenfermedades] = useState(valores[4]);
+	const [medicamentos, setmedicamentos] = useState(valores[6]);
+	const [alergias, setalergias] = useState(valores[0]);
+
+	const infoSubmmit = e => {
+		e.preventDefault();
+
+		let correo = info.email;
+		let id = local.id;
+		let usuario = id.toString();
+		const data = {
+			name: nombre,
+			email: correo,
+			age: edad,
+			ci: cedula,
+			date: dob,
+			user_phone: telefono,
+			caregiver_name: cuidador,
+			caregiver_phone: numcuidador,
+			weight: peso,
+			height: estatura,
+			profession: profesion,
+			diseases: enfermedades,
+			medicines: medicamentos,
+			alergies: alergias
+		};
+		console.log("data", data);
+		console.log(
+			`https://3001-harlequin-ape-v1e477jn.ws-us03.gitpod.io/api/users/${usuario}/info`,
+			"link que se usará"
+		);
+		fetch(`https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/users/${usuario}/info`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data) //convierte data a string
+		})
+			.then(response => response.json())
+			.then(data => {
+				let datos = {
+					"Alergias Medicamentosas/Alimenticias": alergias,
+					"Altura Usuario": estatura,
+					Cedula: cedula,
+					Edad: edad,
+					Enfermedades: enfermedades,
+					"Fecha Nacimiento": dob,
+					"Medicamentos Actuales": medicamentos,
+					"Nombre Cuidador": cuidador,
+					"Peso Usuario": peso,
+					Profesion: profesion,
+					"Telefono Cuidador ": numcuidador,
+					"Telefono Usuario ": telefono,
+					email: correo,
+					name: nombre
+				};
+				let session_info = {
+					token: local.token,
+					id: local.id,
+					userinf: datos
+				};
+				console.log("session_info", session_info);
+				localStorage.setItem("user_information", JSON.stringify(session_info));
+				console.log(data);
+				if (data.status == "success") {
+					setRedirect(true); // para que redirect funcione se debe renderizar la pagina de nuevo, para eso usamos este hook
+					console.log("Usuario agregado correctamente");
+				} else {
+					console.log(data.msj);
+				}
+			})
+			.catch(error => {
+				console.log("Error", error);
+			});
+	};
 
 	return (
 		<div className="container">
 			<div className="jumbotron">
-				<h1 className="display-4 text-white">Nombre de Usuario</h1>
+				<h1 className="display-4 text-white">{nombre}</h1>
 				<img src={foto} width="40%" />
 				<br />
 				<br />
@@ -38,9 +128,6 @@ export const User = () => {
 						Ademas de poder consultar informacion con nuestro personal farmaceutico estaras sujeto a recibir
 						notificaciones con actualizaciones de producto y mas...
 					</p>
-					<a className="btn btn-primary btn-lg" href="#" role="button">
-						Learn more
-					</a>
 				</div>
 			</div>
 			<h1>Mi Cuenta</h1>
@@ -56,7 +143,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputCedula4"
+							id="inputName"
 							name="name"
 							required
 							placeholder=""
@@ -71,7 +158,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputCedula4"
+							id="inputCedula"
 							name="cedula"
 							required
 							placeholder=""
@@ -89,7 +176,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputEdad4"
+							id="inputEdad"
 							placeholder=""
 							name="edad"
 							required
@@ -104,7 +191,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="dob"
+							id="inputFechaNa"
 							placeholder=""
 							name="dob"
 							required
@@ -122,7 +209,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputTelefono4"
+							id="inputTelefonoU"
 							placeholder=""
 							name="telefono"
 							required
@@ -137,14 +224,14 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="nombre_cuidador4"
+							id="inputnomCuidador"
 							placeholder=""
 							name="cuidador"
 							required
 							onChange={evento => {
-								setTelefono(evento.target.value);
+								setCuidador(evento.target.value);
 							}}
-							value={telefono}
+							value={cuidador}
 						/>
 					</div>
 				</div>
@@ -155,12 +242,12 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputTelefono_cuidador4"
+							id="inputTeleCuidador"
 							placeholder=""
 							name="telefonocuidador"
 							required
 							onChange={evento => {
-								setphonecuidador(evento.target.value);
+								setNumcuidador(evento.target.value);
 							}}
 							value={numcuidador}
 						/>
@@ -170,9 +257,9 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="peso_usuario4"
+							id="inputPesoU"
 							placeholder=""
-							name="peso"
+							name="inputpeso"
 							required
 							onChange={evento => {
 								setpeso(evento.target.value);
@@ -188,7 +275,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputEstatura4"
+							id="inputEstatura"
 							name="estatura"
 							required
 							placeholder=""
@@ -203,7 +290,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="profesion4"
+							id="inputProfesion"
 							name="profesion"
 							required
 							placeholder=""
@@ -221,7 +308,7 @@ export const User = () => {
 						className="form-control"
 						id="inputEnfermedades4"
 						placeholder=""
-						name="enfermedades"
+						name="inputEnfermedades"
 						required
 						onChange={evento => {
 							setenfermedades(evento.target.value);
@@ -235,9 +322,9 @@ export const User = () => {
 					<input
 						type="text"
 						className="form-control"
-						id="inputMedicamentos2"
+						id="inputMedicamentosAC"
 						placeholder=""
-						name="medicamentos"
+						name="inputMedicamentos"
 						required
 						onChange={evento => {
 							setmedicamentos(evento.target.value);
@@ -253,7 +340,7 @@ export const User = () => {
 						className="form-control"
 						id="inputAlergias2"
 						placeholder=""
-						name="alergias"
+						name="inputAlergias"
 						required
 						onChange={evento => {
 							setalergias(evento.target.value);
@@ -262,13 +349,19 @@ export const User = () => {
 					/>
 				</div>
 
-				<button type="submit" className="btn btn-primary">
+				<button type="submit" className="btn btn-primary " onClick={e => infoSubmmit(e)}>
 					Actualizar
 				</button>
-				<button type="submit" className="btn btn-primary">
-					Hacer consulta de Medicamentos
-				</button>
+				<Link to="/parmacy_consultation">
+					<button type="submit" className="btn btn-primary">
+						Hacer consulta de Medicamentos
+					</button>
+				</Link>
 			</form>
 		</div>
 	);
 };
+
+{
+	/* <Link to = ""></Link> Sign in*/
+}

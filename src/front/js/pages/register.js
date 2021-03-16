@@ -19,7 +19,7 @@ export const Register = () => {
 			email: email,
 			password: pass
 		};
-		fetch("https://3001-orange-gayal-yfume403.ws-us03.gitpod.io/api/register", {
+		fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -96,7 +96,10 @@ export const Register = () => {
 				{redirect ? <Redirect to="/login" /> : ""}
 				<div className="container signin">
 					<p>
-						Cuenta con cuenta de inicio? <Link to="/login">Sign in</Link>
+						Cuenta con cuenta de inicio?
+						<Link to="/login">
+							<span> Sign In </span>
+						</Link>
 					</p>
 				</div>
 			</form>
