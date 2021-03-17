@@ -60,7 +60,7 @@ export const User = () => {
 			medicines: medicamentos,
 			alergies: alergias
 		};
-		console.log("data", data);
+		// console.log("data", data);
 		console.log(
 			`https://3001-harlequin-ape-v1e477jn.ws-us03.gitpod.io/api/users/${usuario}/info`,
 			"link que se usará"
@@ -95,18 +95,18 @@ export const User = () => {
 					id: local.id,
 					userinf: datos
 				};
-				console.log("session_info", session_info);
+				// console.log("session_info", session_info);
 				localStorage.setItem("user_information", JSON.stringify(session_info));
-				console.log(data);
+				// console.log(data);
 				if (data.status == "success") {
 					setRedirect(true); // para que redirect funcione se debe renderizar la pagina de nuevo, para eso usamos este hook
-					console.log("Usuario agregado correctamente");
+					// console.log("Usuario agregado correctamente");
 				} else {
-					console.log(data.msj);
+					// console.log(data.msj);
 				}
 			})
 			.catch(error => {
-				console.log("Error", error);
+				// console.log("Error", error);
 			});
 	};
 
@@ -134,7 +134,7 @@ export const User = () => {
 			<h3>Mira y edita tu información personal a continuación.</h3>
 
 			<br />
-			<form>
+			<form onSubmit={e => infoSubmmit(e)}>
 				<div className="form-row">
 					<div className="form-group col-md-6">
 						<label className="name">
@@ -143,7 +143,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputName"
+							id="inputCedula4"
 							name="name"
 							required
 							placeholder=""
@@ -158,7 +158,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputCedula"
+							id="inputCedula4"
 							name="cedula"
 							required
 							placeholder=""
@@ -176,7 +176,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputEdad"
+							id="inputEdad4"
 							placeholder=""
 							name="edad"
 							required
@@ -191,7 +191,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputFechaNa"
+							id="dob"
 							placeholder=""
 							name="dob"
 							required
@@ -209,7 +209,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputTelefonoU"
+							id="inputTelefono4"
 							placeholder=""
 							name="telefono"
 							required
@@ -224,7 +224,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputnomCuidador"
+							id="nombre_cuidador4"
 							placeholder=""
 							name="cuidador"
 							required
@@ -242,7 +242,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputTeleCuidador"
+							id="inputTelefono_cuidador4"
 							placeholder=""
 							name="telefonocuidador"
 							required
@@ -257,9 +257,9 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputPesoU"
+							id="peso_usuario4"
 							placeholder=""
-							name="inputpeso"
+							name="peso"
 							required
 							onChange={evento => {
 								setpeso(evento.target.value);
@@ -275,7 +275,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputEstatura"
+							id="inputEstatura4"
 							name="estatura"
 							required
 							placeholder=""
@@ -290,7 +290,7 @@ export const User = () => {
 						<input
 							type="text"
 							className="form-control"
-							id="inputProfesion"
+							id="profesion4"
 							name="profesion"
 							required
 							placeholder=""
@@ -308,7 +308,7 @@ export const User = () => {
 						className="form-control"
 						id="inputEnfermedades4"
 						placeholder=""
-						name="inputEnfermedades"
+						name="enfermedades"
 						required
 						onChange={evento => {
 							setenfermedades(evento.target.value);
@@ -322,9 +322,9 @@ export const User = () => {
 					<input
 						type="text"
 						className="form-control"
-						id="inputMedicamentosAC"
+						id="inputMedicamentos2"
 						placeholder=""
-						name="inputMedicamentos"
+						name="medicamentos"
 						required
 						onChange={evento => {
 							setmedicamentos(evento.target.value);
@@ -334,13 +334,13 @@ export const User = () => {
 				</div>
 
 				<div className="form-group">
-					<label className="alergias">Alergias Medicamentosas</label>
+					<label className="alergias">Alergias a medicamentos</label>
 					<input
 						type="text"
 						className="form-control"
 						id="inputAlergias2"
 						placeholder=""
-						name="inputAlergias"
+						name="alergias"
 						required
 						onChange={evento => {
 							setalergias(evento.target.value);
@@ -349,11 +349,11 @@ export const User = () => {
 					/>
 				</div>
 
-				<button type="submit" className="btn btn-primary " onClick={e => infoSubmmit(e)}>
+				<button type="submit" className="btn btn-primary ">
 					Actualizar
 				</button>
 				<Link to="/parmacy_consultation">
-					<button type="submit" className="btn btn-primary">
+					<button type="submit" className="btn btn-primary bg-info text-white">
 						Hacer consulta de Medicamentos
 					</button>
 				</Link>
@@ -361,7 +361,3 @@ export const User = () => {
 		</div>
 	);
 };
-
-{
-	/* <Link to = ""></Link> Sign in*/
-}

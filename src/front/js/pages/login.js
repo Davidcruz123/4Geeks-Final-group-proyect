@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.scss";
 import { Redirect } from "react-router-dom";
-import { gif } from "../../img/GIFqueremos.gif";
+import gif from "../../img/GIFqueremos.gif";
 export const Login = () => {
 	const { store, actions } = useContext(Context);
 	const [redirect, setRedirect] = useState(false);
+	const [mensajeError, setMensajeError] = useState("mensaje prueba");
 
 	const loginSubmit = e => {
 		e.preventDefault();
 
 		let email = document.getElementById("inputEmail").value;
 		let pass = document.getElementById("inputPassword").value;
+		let dom_mensaje = document.getElementById("mensaje_error");
 
 		const data = {
 			email: email,
@@ -48,6 +50,10 @@ export const Login = () => {
 					console.log("en teoria ya se hizo el redirect");
 				} else {
 					console.log(data.msj); //me tira indefinido(lo psuo Samuel)
+					setMensajeError(data.msg);
+					dom_mensaje.style.display = "block";
+					console.log("prueba de david", data, mensajeError);
+					console.log(Object.keys(data));
 				}
 			})
 			.catch(error => {
@@ -61,12 +67,7 @@ export const Login = () => {
 				<div className="text-center">
 					<br />
 					<br />
-					<img
-						src="https://browser-blush-spider-pop272c7.ws-us03.gitpod.io/workspace/4Geeks-Final-group-proyect/src/front/img/GIFqueremos.gif"
-						alt="Avatar"
-						className="rounded mx-auto d-block"
-						width="40%"
-					/>
+					<img src={gif} alt="Avatar" className="rounded mx-auto d-block" width="40%" />
 				</div>
 
 				<div className="container">
@@ -95,8 +96,8 @@ export const Login = () => {
 						</div>
 					</div>
 
-					<p className="text-danger">
-						La contrasena que ha introducido es incorrecta. Has olvidado la contrasena?
+					<p className="text-danger" id="mensaje_error">
+						{mensajeError}
 					</p>
 
 					<input type="submit" className="btn btn-primary" value="Acceso" />

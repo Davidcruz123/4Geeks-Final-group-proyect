@@ -25,7 +25,7 @@ export const Recovery1 = () => {
 				<input type="password" id="confirmPassword" name="nueva_clave1" required title="Confirm new password" />
 
 				<p className="form-actions">
-					<input type="submit" value="Cambio Contrasena" title="Change password" />
+					<input type="submit" value="Cambio Contrasena" title="Change password" onClick={() => {}} />
 					<Link to="/recovery_pass" />
 				</p>
 			</form>

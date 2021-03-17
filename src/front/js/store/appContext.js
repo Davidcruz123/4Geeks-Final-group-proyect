@@ -24,6 +24,8 @@ const injectContext = PassedComponent => {
 		useEffect(() => {
 			// state.actions.getMedicine(state.store.urlMedicine);
 			//state.actions.getMedicine();
+			state.actions.get_all_medicine;
+			console.log(state.store);
 		}, []);
 
 		return (

@@ -41,6 +41,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			get_all_medicines: () => {
+				fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io" + "/api/medicamentos")
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({ medicines: data });
+						console.log(data, "linea");
+					})
+					.catch(error => {
+						console.log("Error loading message from backend XXXX", error);
+					});
 			}
 		}
 	};

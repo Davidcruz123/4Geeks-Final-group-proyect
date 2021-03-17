@@ -109,39 +109,33 @@ def post_info(id):
         return jsonify({"status":"success","msg":"Info added successfully"}),200
 
 #recuperacion de Contraseña
-@api.route("/restore_password/<int:id>", methods=['POST'])
-def restore_password(id):
+@api.route("/restore_password", methods=['POST'])
+def restore_password():
     if request.method == 'POST':
         body = request.get_json()
         email = body.get("email")
-        
-        restore_id = User.query.get(id)
+        restore_id = User.query.filter_by(email=email).first()
         if not restore_id:
-            return jsonify({"msg":"User does not exist"}), 400
-        
+            return jsonify({"status":"success","msg":"User does not exist"}), 400
         # restore_id = User()
-        
-    
         code = round(random.random()*10000)
         restore_id.code = code
-        
         header = "Password reset"
         container = "This is your security code : " + str(code) 
         correo = email
         mail(header,container,correo)
-         
-        
         print(mail)
         db.session.add(restore_id)
         db.session.commit()
-        return jsonify({"status":"succed","msj":"The code has been sent"}), 200
+        return jsonify({"status":"success","msj":"The code has been sent"}), 200
 
-@api.route('/users/recovery/<int:id>',methods=['POST'])
-def user_verification(id):
+@api.route('/users/recovery/<string:email>',methods=['POST'])
+def user_verification(email):
     body=request.get_json()
     codigo=body.get('code')
     # email=body.get('email')
-    user=User.query.get(id)
+    user=User.query.filter(User.email==email).first()
+    print(user)
     if user==None:
         return jsonify({"status":"failed","msg":"User does not exist"}),404
     if codigo==user.code:
