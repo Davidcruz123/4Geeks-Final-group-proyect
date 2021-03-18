@@ -4,8 +4,14 @@ import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/buscar_medicamentos.scss";
 import imagen from "../../img/buscar_medicamentos.jpg";
 import imagen2 from "../../img/medicamentos2.jpg";
+import { Redirect } from "react-router-dom";
 export const Medicamentos = () => {
 	const { store, actions } = useContext(Context);
+
+	if (JSON.parse(localStorage.getItem("user_information")) == null) {
+		return <Redirect to="/login" />;
+	}
+
 	const info = JSON.parse(localStorage.getItem("user_information")).userinf;
 	const local = JSON.parse(localStorage.getItem("user_information"));
 	// const [mensaje, setMensaje] = useState(data);
@@ -17,36 +23,39 @@ export const Medicamentos = () => {
 
 	const sendInfSubmit = e => {
 		e.preventDefault();
+		let storage_info = JSON.parse(localStorage.getItem("user_information"));
+		if (storage_info.userDataReady == undefined) {
+			alert("Aun hay datos del perfil que debe llenar");
+		} else {
+			let text = document.getElementById("Textarea1").value;
+			//let checkIz = document.getElementById("checkboxMedicamentos").value;
+			//let checkDe
+			//console.log("check", checkIz);
+			console.log("Prueba_Consulta: ", consulta);
+			let consulta = "Mi consulta es sobre  " + checkIZ + "\n" + checkDE + " \n .Mi consulta es: \n " + text;
+			console.log("Prueba_Consulta: ", consulta);
 
-		let text = document.getElementById("Textarea1").value;
-		//let checkIz = document.getElementById("checkboxMedicamentos").value;
-		//let checkDe
-		//console.log("check", checkIz);
-		console.log("Prueba_Consulta: ", consulta);
-		let consulta = "Mi consulta es sobre  " + checkIZ + "\n" + checkDE + " \n .Mi consulta es: \n " + text;
-		console.log("Prueba_Consulta: ", consulta);
-
-		let id = local.id;
-		let usuario = id.toString();
-		const data = {
-			data: consulta
-		};
-		fetch(`https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/farmainfo/${usuario}`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(data) //convierte data a string
-		})
-			.then(response => response.json())
-			.then(data => {
-				console.log(data);
+			let id = local.id;
+			let usuario = id.toString();
+			const data = {
+				data: consulta
+			};
+			fetch(`https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/farmainfo/${usuario}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(data) //convierte data a string
 			})
-			.catch(error => {
-				console.log("Error", error);
-			});
+				.then(response => response.json())
+				.then(data => {
+					console.log(data);
+				})
+				.catch(error => {
+					console.log("Error", error);
+				});
+		}
 	};
-
 	// funcion para update el izquierdo
 	const updateIZ = el => {
 		console.log(el.target.value);

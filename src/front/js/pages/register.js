@@ -9,7 +9,7 @@ export const Register = () => {
 
 	const registeSubmit = e => {
 		e.preventDefault();
-
+		actions.agregarEmailrecuperacion("string de prueba");
 		let name = document.getElementById("inputName").value;
 		let email = document.getElementById("inputEmail").value;
 		let pass = document.getElementById("inputPassword").value;
@@ -19,7 +19,7 @@ export const Register = () => {
 			email: email,
 			password: pass
 		};
-		fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/register", {
+		fetch("https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -87,9 +87,7 @@ export const Register = () => {
 						/>
 					</div>
 
-					<p>
-						Al crear esta cuenta usted acepta terminos y condiciones <a href="#">Terms & Privacy</a>.
-					</p>
+					<p>Al crear esta cuenta usted acepta terminos y condiciones .</p>
 
 					<input type="submit" className="btn btn-primary" value="Register" />
 				</div>

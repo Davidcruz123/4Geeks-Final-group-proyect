@@ -21,7 +21,7 @@ export const Login = () => {
 			password: pass
 		};
 
-		fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/login", {
+		fetch("https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -33,6 +33,7 @@ export const Login = () => {
 				console.log("LOGIN", data);
 				if (data.status == "succesfull") {
 					console.log("Usuario logueado correctamente");
+					actions.usuariologin();
 					let session_info = {
 						token: data.data.token,
 						id: data.data.user.id,
@@ -101,20 +102,20 @@ export const Login = () => {
 					</p>
 
 					<input type="submit" className="btn btn-primary" value="Acceso" />
+
+					<Link to="/home">
+						<input type="submit" className="btn btn-primary m-2" value="Cancelar" />
+					</Link>
+
 					{/* {redirect ? <Redirect to="/user_view" /> : ""} */}
-					<label>
-						<input type="checkbox" checked="checked" name="remember" /> Recordarme
-					</label>
 				</div>
 
 				<div className="container">
-					<Link to="/register">
-						<button type="submit" className="btn btn-primary">
-							Cancelar
-						</button>
-					</Link>
 					<span className="psw">
-						Olvido <Link to="/recovery_pass1">contrasena?</Link>
+						Olvido{" "}
+						<Link to="/password">
+							<span id="spancontrasena"> Contraseña? </span>
+						</Link>
 					</span>
 				</div>
 			</form>

@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			userlogueado: false,
 			message: null,
 			demo: [
 				{
@@ -53,6 +54,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch(error => {
 						console.log("Error loading message from backend XXXX", error);
 					});
+			},
+
+			agregarEmailrecuperacion: email => {
+				setStore({ email: email });
+				console.log(getStore());
+			},
+			usuariologin: () => {
+				setStore({ userlogueado: true });
+				console.log("estoy cambiando a true");
+			},
+			usuariologout: () => {
+				setStore({ userlogueado: false });
+				console.log("estoy cambiando a false");
 			}
 		}
 	};

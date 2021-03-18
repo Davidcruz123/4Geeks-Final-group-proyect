@@ -139,7 +139,7 @@ def user_verification(email):
     if user==None:
         return jsonify({"status":"failed","msg":"User does not exist"}),404
     if codigo==user.code:
-        return jsonify({"status":"success","msg":"Code is correct"}),200
+        return jsonify({"status":"success","msg":"Code is correct","id":user.id}),200
     else:
         return jsonify({"status":"failed","msg":"Code is not correct"}),404
 

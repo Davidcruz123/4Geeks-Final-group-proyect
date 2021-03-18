@@ -12,12 +12,7 @@ export const Home = () => {
 			<p>
 				<img src={rigoImageUrl} style={{ borderRadius: "0%" }} />
 			</p>
-			<div className="ml-auto">
-				<button className="btn btn-primary">Buscar Medicamentos</button>
-			</div>
-			<div className="ml-auto">
-				<button className="btn btn-primary">Consulta Farmacéutica</button>
-			</div>
+
 			<div className="alert alert-info">
 				{store.message ||
 					"Consulte con su Médico o Farmacéutico de confianza si presenta algún efecto secundario con sus medicametos o tiene alguna duda sobre ellos"}

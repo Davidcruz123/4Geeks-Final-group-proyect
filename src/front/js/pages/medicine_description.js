@@ -7,17 +7,30 @@ export const Descripcion = () => {
 	const id_de_medicina = useParams();
 
 	let storage_info = JSON.parse(localStorage.getItem("user_information"));
-	if (storage_info.medicine_info.data[id_de_medicina.id] == undefined) {
-		var {
-			principio_activo,
-			respuesta_1,
-			respuesta_2,
-			respuesta_3,
-			respuesta_4,
-			respuesta_5,
-			respuesta_6,
-			respuesta_7
-		} = storage_info.medicine_info.data;
+	if (storage_info.estado == "search") {
+		if (storage_info.medicine_info.data[id_de_medicina.id] == undefined) {
+			var {
+				principio_activo,
+				respuesta_1,
+				respuesta_2,
+				respuesta_3,
+				respuesta_4,
+				respuesta_5,
+				respuesta_6,
+				respuesta_7
+			} = storage_info.medicine_info.data;
+		} else {
+			var {
+				principio_activo,
+				respuesta_1,
+				respuesta_2,
+				respuesta_3,
+				respuesta_4,
+				respuesta_5,
+				respuesta_6,
+				respuesta_7
+			} = storage_info.medicine_info.data[id_de_medicina.id];
+		}
 	} else {
 		var {
 			principio_activo,
@@ -28,7 +41,7 @@ export const Descripcion = () => {
 			respuesta_5,
 			respuesta_6,
 			respuesta_7
-		} = storage_info.medicine_info.data[id_de_medicina.id];
+		} = storage_info.medicine_info[id_de_medicina.id];
 	}
 
 	return (
@@ -42,7 +55,7 @@ export const Descripcion = () => {
 			<div className="row">
 				<div className="col-6">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Para cuales condiciones o enfermedades se prescribe este medicamento?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_1}</li>
@@ -51,7 +64,7 @@ export const Descripcion = () => {
 
 				<div className="row col-6">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Qué otro uso se le da a este medicamento?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_2}</li>
@@ -67,7 +80,7 @@ export const Descripcion = () => {
 			<div className="row">
 				<div className="col-6">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Cuáles son los efectos secundarios que podría provocar este medicamento?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_3}</li>
@@ -76,7 +89,7 @@ export const Descripcion = () => {
 
 				<div className="row col-6 text-rigth">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Qué debo hacer en caso de una sobredosis?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_4}</li>
@@ -91,7 +104,7 @@ export const Descripcion = () => {
 			<div className="row">
 				<div className="col-6">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Cómo se debe usar este medicamento?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_5}</li>
@@ -100,7 +113,7 @@ export const Descripcion = () => {
 
 				<div className="row col-6 text-rigth">
 					<p>
-						<strong>Para cuales condiciones o enfermedades se prescribe este medicamento</strong>
+						<strong>¿Cómo debo almacenar o desechar este medicamento?</strong>
 					</p>
 					<ul>
 						<li>{respuesta_6}</li>

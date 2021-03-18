@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "bootstrap/dist/css/bootstrap.css";
 import imagen from "../../img/medicine_consultation.jpg";
@@ -7,7 +7,32 @@ import { Link } from "react-router-dom";
 
 export const Consulta = () => {
 	const { store, actions } = useContext(Context);
-	console.log(store.medicines);
+	const [lista_medicamentos, setListaMedicamentos] = useState([{ principio_activo: "Loading" }]);
+
+	useEffect(() => {
+		get_all_medicines();
+	}, []);
+
+	const get_all_medicines = () => {
+		fetch("https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io" + "/api/medicamentos")
+			.then(resp => resp.json())
+			.then(data => {
+				// setStore({ medicines: data });
+				console.log(data, "linea");
+				setListaMedicamentos(data);
+
+				let nuevo_storage = {
+					...JSON.parse(localStorage.getItem("user_information")),
+					medicine_info: data,
+					estado: "medicine"
+				};
+				let infostorage = localStorage.setItem("user_information", JSON.stringify(nuevo_storage));
+				console.log("storage ahora con medicina", JSON.parse(localStorage.getItem("user_information")));
+			})
+			.catch(error => {
+				console.log("Error loading message from backend XXXX", error);
+			});
+	};
 
 	return (
 		<div className="jumbotron jumbotron-fluid bg-white">
@@ -41,7 +66,17 @@ export const Consulta = () => {
 									<div className="row">
 										<div className="col-6">
 											<ul className="text-left">
-												<Link to="/medicine_description">
+												{lista_medicamentos.map((elemento, index) => {
+													return (
+														<Link to={"/medicine_description/" + index} key={index}>
+															<li key={index} className="text-dark">
+																{elemento.principio_activo}
+															</li>
+														</Link>
+													);
+												})}
+
+												{/* <Link to="/medicine_description">
 													<li className="text-dark">Diazepan</li>
 												</Link>
 												<Link to="/medicine_description">
@@ -101,7 +136,7 @@ export const Consulta = () => {
 												</Link>
 												<Link to="/medicine_description">
 													<li className="text-dark">Diazepan</li>
-												</Link>
+												</Link> */}
 											</ul>
 											<br />
 										</div>

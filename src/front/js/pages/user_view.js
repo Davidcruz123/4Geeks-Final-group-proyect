@@ -1,26 +1,22 @@
 import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/user_view.scss";
 import foto from "../../img/Portada02.png";
 
 export const User = () => {
+	if (JSON.parse(localStorage.getItem("user_information")) == null) {
+		return <Redirect to="/" />;
+	}
+
 	const info = JSON.parse(localStorage.getItem("user_information")).userinf;
 	const local = JSON.parse(localStorage.getItem("user_information"));
 	const { store, actions } = useContext(Context);
 	//console.log("info", info);
 	console.log("buscar el id", info);
 	console.log("local", local);
-	//console.log("fechanull", info.Fecha_Nacimiento);
-	//console.log("fecha de Na", valores[5]);
-	//console.log("peso", info["Telefono Usuario"]);
 
-	// console.log("prueba usuario", usuario);
-	// console.log("usuario", usuario);
-	//let usuario = id.String();
-
-	//console.log("error", fechaNa);
 	let valores = Object.values(info);
 	console.log(valores);
 
@@ -60,12 +56,13 @@ export const User = () => {
 			medicines: medicamentos,
 			alergies: alergias
 		};
+
 		// console.log("data", data);
 		console.log(
 			`https://3001-harlequin-ape-v1e477jn.ws-us03.gitpod.io/api/users/${usuario}/info`,
 			"link que se usará"
 		);
-		fetch(`https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io/api/users/${usuario}/info`, {
+		fetch(`https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/users/${usuario}/info`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -93,17 +90,11 @@ export const User = () => {
 				let session_info = {
 					token: local.token,
 					id: local.id,
-					userinf: datos
+					userinf: datos,
+					userDataReady: true
 				};
-				// console.log("session_info", session_info);
+				console.log("session_info", session_info);
 				localStorage.setItem("user_information", JSON.stringify(session_info));
-				// console.log(data);
-				if (data.status == "success") {
-					setRedirect(true); // para que redirect funcione se debe renderizar la pagina de nuevo, para eso usamos este hook
-					// console.log("Usuario agregado correctamente");
-				} else {
-					// console.log(data.msj);
-				}
 			})
 			.catch(error => {
 				// console.log("Error", error);
