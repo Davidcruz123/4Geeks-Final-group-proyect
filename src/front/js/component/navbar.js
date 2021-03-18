@@ -72,7 +72,7 @@ export const Navbar = () => {
 
 	const getinformation = () => {
 		let medicamento_url = document.getElementById("searchmedicine").value;
-		let url = "https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/medicines/" + medicamento_url;
+		let url = "http://127.0.0.1:5000/medicines/" + medicamento_url;
 		fetch(url)
 			.then(response => response.json())
 			.then(data => {

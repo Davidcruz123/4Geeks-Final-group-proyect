@@ -116,7 +116,7 @@ def restore_password():
         email = body.get("email")
         restore_id = User.query.filter_by(email=email).first()
         if not restore_id:
-            return jsonify({"status":"success","msg":"User does not exist"}), 400
+            return jsonify({"status":"failed","msg":"User does not exist"}), 400
         # restore_id = User()
         code = round(random.random()*10000)
         restore_id.code = code

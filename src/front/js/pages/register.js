@@ -7,6 +7,10 @@ export const Register = () => {
 	const { store, actions } = useContext(Context);
 	const [redirect, setRedirect] = useState(false);
 
+	// window.onclick = function(event) {
+	// 	document.getElementById("mensaje_correoexistente").style.display = "none";
+	// };
+
 	const registeSubmit = e => {
 		e.preventDefault();
 		actions.agregarEmailrecuperacion("string de prueba");
@@ -19,7 +23,7 @@ export const Register = () => {
 			email: email,
 			password: pass
 		};
-		fetch("https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/register", {
+		fetch("http://127.0.0.1:5000/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -34,6 +38,8 @@ export const Register = () => {
 					console.log("Usuario agregado correctamente");
 				} else {
 					console.log(data.msj);
+					// document.getElementById("mensaje_correoexistente").style.display = "block";
+					document.getElementById("mensaje_correoexistente").style.display = "block";
 				}
 			})
 			.catch(error => {
@@ -88,7 +94,9 @@ export const Register = () => {
 					</div>
 
 					<p>Al crear esta cuenta usted acepta terminos y condiciones .</p>
-
+					<p className="text-danger" id="mensaje_correoexistente">
+						Este correo pertenece a una cuenta existente.{" "}
+					</p>
 					<input type="submit" className="btn btn-primary" value="Register" />
 				</div>
 				{redirect ? <Redirect to="/login" /> : ""}

@@ -62,7 +62,7 @@ export const User = () => {
 			`https://3001-harlequin-ape-v1e477jn.ws-us03.gitpod.io/api/users/${usuario}/info`,
 			"link que se usará"
 		);
-		fetch(`https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/users/${usuario}/info`, {
+		fetch(`http://127.0.0.1:5000/users/${usuario}/info`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -95,6 +95,7 @@ export const User = () => {
 				};
 				console.log("session_info", session_info);
 				localStorage.setItem("user_information", JSON.stringify(session_info));
+				document.getElementById("mensajeAlerta").style.display = "block";
 			})
 			.catch(error => {
 				// console.log("Error", error);
@@ -339,6 +340,11 @@ export const User = () => {
 						value={alergias}
 					/>
 				</div>
+
+				<p className="text-danger" id="mensajeAlerta">
+					{" "}
+					La información ha sido actualizada{" "}
+				</p>
 
 				<button type="submit" className="btn btn-primary ">
 					Actualizar

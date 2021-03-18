@@ -13,7 +13,7 @@ import { Footer } from "./component/footer";
 import { Medicamentos } from "./pages/consulta_farmacia.js";
 import { Descripcion } from "./pages/medicine_description.js";
 import { Consulta } from "./pages/medicine_consultation";
-
+import { Password } from "./pages/password";
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -56,7 +56,9 @@ const Layout = () => {
 						<Route exact path="/medicine_consultation">
 							<Consulta />
 						</Route>
-
+						<Route exact path="/password">
+							<Password />
+						</Route>
 						<Route>
 							<h1>Not found!</h1>
 						</Route>

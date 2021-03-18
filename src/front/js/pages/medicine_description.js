@@ -43,13 +43,13 @@ export const Descripcion = () => {
 			respuesta_7
 		} = storage_info.medicine_info[id_de_medicina.id];
 	}
-
+	let principio_activo_1 = principio_activo[0].toLocaleUpperCase() + principio_activo.slice(1);
 	return (
 		<div className="container bg-light">
 			<div className="row-fluid" />
 			<p className="text-center bg-primary">
 				<h1>
-					<strong>{principio_activo}</strong>
+					<strong>{principio_activo_1}</strong>
 				</h1>
 			</p>
 			<div className="row">

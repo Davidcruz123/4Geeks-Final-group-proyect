@@ -14,7 +14,8 @@ export const Consulta = () => {
 	}, []);
 
 	const get_all_medicines = () => {
-		fetch("https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io" + "/api/medicamentos")
+		// fetch("http://127.0.0.1:5000" + "/api/medicamentos")
+		fetch("http://127.0.0.1:5000" + "/medicamentos")
 			.then(resp => resp.json())
 			.then(data => {
 				// setStore({ medicines: data });

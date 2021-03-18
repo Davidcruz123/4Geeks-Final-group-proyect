@@ -40,7 +40,7 @@ export const Medicamentos = () => {
 			const data = {
 				data: consulta
 			};
-			fetch(`https://3001-pink-cheetah-bj6f5blk.ws-us03.gitpod.io/api/farmainfo/${usuario}`, {
+			fetch(`http://127.0.0.1:5000/farmainfo/${usuario}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -50,6 +50,7 @@ export const Medicamentos = () => {
 				.then(response => response.json())
 				.then(data => {
 					console.log(data);
+					document.getElementById("mensajeEnviar").style.display = "block";
 				})
 				.catch(error => {
 					console.log("Error", error);
@@ -101,7 +102,10 @@ export const Medicamentos = () => {
 					<img src={imagen2} width="100%" style={{ borderRadius: "0%" }} />
 				</div>
 				<br />
-
+				<h3 className="text-danger" style={{ display: "none" }} id="mensajeEnviar">
+					{" "}
+					<strong>Su consulta ha sido enviado con éxito al farmaceutico </strong>{" "}
+				</h3>
 				<form>
 					<div className="row">
 						<div className="col-6" id="checkConsulta">
