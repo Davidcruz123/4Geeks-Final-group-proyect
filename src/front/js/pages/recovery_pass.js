@@ -44,13 +44,6 @@ export const Recovery = () => {
 
 	return (
 		<div className="container">
-			<img
-				src="https://lh3.googleusercontent.com/proxy/f9gOturveSV2An6uG4gt__JLfW8-nqj1uTgBdRcPW4Z25KTEGb5vizpTtuzrMBlVpK7qefoncWdG4JATAcSZg8y3JqJYmbSDKRUoIzkgjTaYjppZXnezKSs8F4kV5WtC8E1uvksoMdWbxtEo59Y
-"
-				width="40%"
-				className="mx-auto d-block"
-			/>
-
 			<h1>Cambio Contrasena</h1>
 
 			<form method="post" action="/action_page.php" onSubmit={e => registeSubmit(e)}>

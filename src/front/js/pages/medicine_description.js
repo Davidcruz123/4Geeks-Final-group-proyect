@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
+import "../../styles/medicine_description.scss";
 
 export const Descripcion = () => {
 	const { store, actions } = useContext(Context);
@@ -47,7 +48,7 @@ export const Descripcion = () => {
 	return (
 		<div className="container bg-light">
 			<div className="row-fluid" />
-			<p className="text-center bg-primary">
+			<p className="id text-center text-white">
 				<h1>
 					<strong>{principio_activo_1}</strong>
 				</h1>
@@ -125,10 +126,23 @@ export const Descripcion = () => {
 					<br />
 				</div>
 			</div>
+			<div className="row">
+				<div className="col-2" />
+				<div className="col-8">
+					<p className="text-center">
+						<strong>¿Cómo debo almacenar o desechar este medicamento?</strong>
+					</p>
+					<ul>
+						<li className="text-center">{respuesta_7}</li>
+					</ul>
+				</div>
+				<div className="col-2" />
+			</div>
 			<div className="row-fluid" />
-			<p className="text-center bg-primary">
-				<h5 className="text-warning">
-					<strong>Nombres Comerciales</strong>
+			<p className="id text-center">
+				<h5 className="text-white">
+					Consulte con su Médico o Farmacéutico de confianza si presenta algún efecto secundario con sus
+					medicametos o tiene alguna duda sobre ellos.En caso de emergencia llamar al 911.
 				</h5>
 			</p>
 		</div>

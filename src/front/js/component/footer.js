@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../img/redessociales.png";
 import "../../styles/footer.scss";
+import imagen from "../../img/ayuda_Miccit.jpg";
 export const Footer = () => (
 	<footer className="footer mt-auto py-3 text-center">
 		<div>
@@ -27,6 +28,8 @@ export const Footer = () => (
 		</div>
 		<div className="row slogan d-felx align-items-center">
 			<span>All rights reserved. 2021 Pharma-Help. San José, Costa Rica</span>
+			<span />
 		</div>
+		<img src={imagen} style={{ borderRadius: "0%" }} />
 	</footer>
 );
