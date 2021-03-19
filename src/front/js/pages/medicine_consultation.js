@@ -76,68 +76,6 @@ export const Consulta = () => {
 														</Link>
 													);
 												})}
-
-												{/* <Link to="/medicine_description">
-													<li className="text-dark">Diazepan</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Atenolol</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Clonazepam</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Esomeprazol</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Sildenafil</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Acetaminofen o paracetamol</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Enalapril</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Hidroclorotiazida</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Furosemida</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Naproxeno</li>
-												</Link>
-											</ul>
-										</div>
-										<div className="col-6 ">
-											<ul className="text-left">
-												<Link to="/medicine_description">
-													<li className="text-dark">Valaciclovir</li>
-												</Link>
-
-												<Link to="/medicine_description">
-													{" "}
-													<li className="text-dark">Dextrometorfano</li>
-													<li className="text-dark">Fexofenadina</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Levotiroxina</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Clorfeniramina</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Prednisolona </li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Omeprazol</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Acido acetil salicílico</li>
-												</Link>
-												<Link to="/medicine_description">
-													<li className="text-dark">Diazepan</li>
-												</Link> */}
 											</ul>
 											<br />
 										</div>

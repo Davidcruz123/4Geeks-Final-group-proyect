@@ -11,6 +11,9 @@ export const User = () => {
 	}
 
 	const info = JSON.parse(localStorage.getItem("user_information")).userinf;
+	if (info == null) {
+		return <Redirect to="/" />;
+	}
 	const local = JSON.parse(localStorage.getItem("user_information"));
 	const { store, actions } = useContext(Context);
 	//console.log("info", info);
