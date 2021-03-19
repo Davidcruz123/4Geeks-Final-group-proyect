@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			userlogueado: false,
 			message: null,
 			demo: [
 				{
@@ -41,6 +42,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+
+			get_all_medicines: () => {
+				fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io" + "/api/medicamentos")
+					.then(resp => resp.json())
+					.then(data => {
+						setStore({ medicines: data });
+						console.log(data, "linea");
+					})
+					.catch(error => {
+						console.log("Error loading message from backend XXXX", error);
+					});
+			},
+
+			agregarEmailrecuperacion: email => {
+				setStore({ email: email });
+				console.log(getStore());
+			},
+			usuariologin: () => {
+				setStore({ userlogueado: true });
+				console.log("estoy cambiando a true");
+			},
+			usuariologout: () => {
+				setStore({ userlogueado: false });
+				console.log("estoy cambiando a false");
+			},
+
+			guardar_correo_recuperacion: email => {
+				setStore({ correorecuperacion: email });
+				console.log("estoy guardando correo de recuperacion", getStore());
+			},
+			recuperacion: id => {
+				setStore({ idrecuperacion: id });
+				console.log("recuperacion de id", getStore());
+			},
+			sendCode: email => {
+				// fetching data from the backend
+				//let usuario = email
+
+				let data = { email: email };
+				fetch("http://127.0.0.1:5000/restore_password", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(data) //convierte data a string
+				})
+					.then(resp => resp.json())
+					.then(data => {
+						console.log(data);
+
+						setStore({ correorecuperacion: email });
+						console.log("verificacion:", getStore());
+					})
+					.catch(error => console.log("Error loading message from backend", error));
 			}
 		}
 	};
