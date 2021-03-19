@@ -26,7 +26,7 @@ export const Login = () => {
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify(data) //convierte data a string
+			body: JSON.stringify(data) //convierte data a string 
 		})
 			.then(response => response.json())
 			.then(data => {
