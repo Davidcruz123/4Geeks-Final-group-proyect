@@ -15,7 +15,7 @@ export const Consulta = () => {
 
 	const get_all_medicines = () => {
 		// fetch("http://127.0.0.1:5000" + "/api/medicamentos")
-		fetch("http://127.0.0.1:5000" + "/medicamentos")
+		fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/medicamentos")
 			.then(resp => resp.json())
 			.then(data => {
 				// setStore({ medicines: data });

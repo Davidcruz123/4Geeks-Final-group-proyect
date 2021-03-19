@@ -23,7 +23,7 @@ export const Register = () => {
 			email: email,
 			password: pass
 		};
-		fetch("http://127.0.0.1:5000/register", {
+		fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/register", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

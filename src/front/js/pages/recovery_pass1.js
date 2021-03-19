@@ -31,7 +31,7 @@ export const Recovery1 = () => {
 				code: addcode
 			};
 
-			fetch(`http://127.0.0.1:5000/users/recovery/${email}`, {
+			fetch(`https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/users/recovery/${email}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"

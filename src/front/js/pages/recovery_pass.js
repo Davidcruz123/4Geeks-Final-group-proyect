@@ -19,7 +19,9 @@ export const Recovery = () => {
 				password: pass
 			};
 			let id_recuperacion = store.idrecuperacion.toString();
-			let url = "http://127.0.0.1:5000/users/actualizarcontrasena/" + id_recuperacion;
+			let url =
+				"https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/users/actualizarcontrasena/" +
+				id_recuperacion;
 
 			fetch(url, {
 				method: "PUT",

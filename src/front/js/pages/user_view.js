@@ -62,7 +62,7 @@ export const User = () => {
 			`https://3001-harlequin-ape-v1e477jn.ws-us03.gitpod.io/api/users/${usuario}/info`,
 			"link que se usará"
 		);
-		fetch(`http://127.0.0.1:5000/users/${usuario}/info`, {
+		fetch(`https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/users/${usuario}/info`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

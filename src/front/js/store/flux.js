@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			get_all_medicines: () => {
-				fetch("https://3001-olive-eel-xv09wr6f.ws-us03.gitpod.io" + "/api/medicamentos")
+				fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io" + "/api/medicamentos")
 					.then(resp => resp.json())
 					.then(data => {
 						setStore({ medicines: data });
@@ -82,7 +82,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//let usuario = email
 
 				let data = { email: email };
-				fetch("http://127.0.0.1:5000/restore_password", {
+				fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/restore_password", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"

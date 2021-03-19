@@ -331,7 +331,7 @@ def farma_info(id):
         Alergias_Medicamentosas_Alimenticias = user.Alergias_Medicamentosas_Alimenticias
         header = "Informacion de Usuario"
         container = "Estos son lo datos del usuario \n\n email: {} \n\n name: {} \n\n cedula:{} \n\n edad:{} \n\n  Fecha Nacimiento :{} \n\n Telefono de Usuario:{} \n\n Nombre de Cuidador:{} \n\n Telefono de Cuidador:{} \n\n Peso de Usuario:{} \n\n Altura de Usuario:{} \n\n Profesion:{} \n\n Medicamentos Actuales:{} \n\n Enfermedades:{} \n\n Alergias Medicamentos:{} \n\n Consulta medica:\n {}".format(email, name, cedula, edad, Fecha_Nacimiento, Telefono_Usuario, Nombre_Cuidador,Telefono_Cuidador,Peso_Usuario,Altura_Usuario,Profesion, Medicamentos_Actuales,Enfermedades, Alergias_Medicamentosas_Alimenticias, consulta)
-        correo = "daviducr.2593@gmail.com"#correo q le llega la info
+        correo = "samuelcampos15009@gmail.com"#correo q le llega la info
         mail(header,container,correo)
         print(mail)
         db.session.add(user)

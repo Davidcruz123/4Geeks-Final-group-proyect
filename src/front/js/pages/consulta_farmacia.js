@@ -40,7 +40,7 @@ export const Medicamentos = () => {
 			const data = {
 				data: consulta
 			};
-			fetch(`http://127.0.0.1:5000/farmainfo/${usuario}`, {
+			fetch(`https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/farmainfo/${usuario}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"

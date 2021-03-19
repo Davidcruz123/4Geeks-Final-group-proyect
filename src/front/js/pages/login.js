@@ -21,7 +21,7 @@ export const Login = () => {
 			password: pass
 		};
 
-		fetch("http://127.0.0.1:5000/login", {
+		fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

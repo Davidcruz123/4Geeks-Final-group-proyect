@@ -14,7 +14,7 @@ export const Password = () => {
 		//let usuario = email
 
 		let data = { email: email };
-		fetch("http://127.0.0.1:5000/restore_password", {
+		fetch("https://3001-magenta-orca-okjcs666.ws-us03.gitpod.io/api/restore_password", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
